@@ -8,7 +8,6 @@ const say = function (name) {
 	block.style.margin = "auto";
 	block.style.boxShadow = "4px 4px 11px 0px grey";
 
-
     let text = document.createElement("p");
     text.textContent = `Hello, ${name}!`;
 	text.style.color = "#00e6b8";
@@ -16,7 +15,6 @@ const say = function (name) {
 
 	block.appendChild(text);
 	document.body.appendChild(block);
-
 };
 
 export default say;
