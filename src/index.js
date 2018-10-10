@@ -1,2 +1,2 @@
 import say from './lib/test.js';
-alert(say('Maks'));
+say('Maksim Konoplev');
