@@ -1,2 +1,5 @@
-import say from './lib/test.js';
-say('Maksim Konoplev');
+import say from './lib/test';
+import './css/test.css';
+
+const message = 'Maksim Konoplev';
+say(message);
