@@ -5,7 +5,7 @@ import shadowStyles from './shadow.css';
 const template = `
 <style>${shadowStyles.toString()}</style>
 <form>
-  <div class="result"></div>
+  <ul class="result"></ul>
   <form-input name="message_text" placeholder="Введите сообщеине" slot="message-input">
     <span slot="icon"></span>
   </form-input>
@@ -34,10 +34,10 @@ class MessageForm extends HTMLElement {
 
   initElements() {
     const form = this.shadowRoot.querySelector('form');
-    const message = this.shadowRoot.querySelector('.result');
+    const messages = this.shadowRoot.querySelector('.result');
     this.elements = {
       form,
-      message,
+      messages,
     };
   }
 
@@ -47,7 +47,7 @@ class MessageForm extends HTMLElement {
   }
 
   onSubmit(event) {
-    this.elements.message.innerText = Array.from(this.elements.form.elements).map(el => el.value).join(', ');
+    this.elements.messages.innerText = Array.from(this.elements.form.elements).map(el => el.value).join(', ');
     event.preventDefault();
     return false;
   }
