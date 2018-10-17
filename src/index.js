@@ -1,5 +1,4 @@
-import say from './lib/test';
+/* eslint-disable */
 import './css/test.css';
-
-const message = 'Maksim Konoplev';
-say(message);
+import FormInput from './lib/components/form/-input';
+import MessageForm from './lib/components/message-form';
