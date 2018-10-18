@@ -1,21 +1,22 @@
+import FormInput from '../form/-input'; // eslint-disable-line
 import shadowStyles from './shadow.css';
-
-// const slotName = 'message-input';
 
 const template = `
 <style>${shadowStyles.toString()}</style>
-<form>
   <ul class="result"></ul>
-  <form-input name="message_text" placeholder="Введите сообщеине" slot="message-input">
-    <span slot="icon"></span>
-  </form-input>
-</form>
+    <form>
+      <form-input class="message-input" name="message_text" placeholder="Сообщение" slot="message-input">
+        <span slot="icon"></span>
+      </form-input>
+    </form>
 `;
 
 class MessageForm extends HTMLElement {
   constructor() {
     super();
-    const shadowRoot = this.attachShadow({ mode: 'open' });
+    const shadowRoot = this.attachShadow({
+      mode: 'open',
+    });
     shadowRoot.innerHTML = template;
     this.initElements();
     this.addHandlers();
@@ -35,10 +36,13 @@ class MessageForm extends HTMLElement {
   initElements() {
     const form = this.shadowRoot.querySelector('form');
     const messages = this.shadowRoot.querySelector('.result');
+
     this.elements = {
       form,
       messages,
     };
+    this.savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    this.showMessages();
   }
 
   addHandlers() {
@@ -47,9 +51,15 @@ class MessageForm extends HTMLElement {
   }
 
   onSubmit(event) {
-    this.elements.messages.innerText = Array.from(this.elements.form.elements).map(el => el.value).join(', ');
+    this.savedMessages.push(this.elements.form.elements[0].value);
+    this.showMessages();
     event.preventDefault();
     return false;
+  }
+
+  showMessages() {
+    localStorage.setItem('messages', JSON.stringify(this.savedMessages));
+    this.elements.messages.innerHTML = this.savedMessages.map(el => `<li>${el}</li>`).join('');
   }
 
   onKeyPress(event) {

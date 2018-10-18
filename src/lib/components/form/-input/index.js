@@ -6,6 +6,10 @@ const template = `
   <slot name="icon"></slot>
 `;
 
+// const iconTemplate = `
+//  <div class="${styles.icon}" />
+// `;
+
 class FormInput extends HTMLElement {
   constructor() {
     super();

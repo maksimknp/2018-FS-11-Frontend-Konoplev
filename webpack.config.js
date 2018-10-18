@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    scr: './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -17,11 +17,13 @@ module.exports = {
       use: ['babel-loader', 'eslint-loader'],
     },
     {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader',
-      }),
+      test: /shadow\.css$/,
+      use:
+        { loader: 'css-loader' },
+    },
+    {
+      test: /test\.css$/,
+      use: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
     }],
   },
   plugins: [
@@ -33,5 +35,8 @@ module.exports = {
       filename: 'style.css',
     }),
   ],
+  stats: {
+    children: false,
+  },
   devtool: 'source-map',
 };

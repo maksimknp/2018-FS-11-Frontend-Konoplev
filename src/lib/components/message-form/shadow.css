@@ -1,11 +1,47 @@
-form-input {
-	width: 100%;
-}
+
 
 .result {
-	color: red;
+  position: absolute;
+  top: 10px;
+  bottom: 60px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style: none;
+  width: 100%;
 }
 
-input[type=submit] {
-	visibility: collapse;
+.message-input {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+}
+
+.result>li {
+  display: block;
+  padding: 12px 12px 24px 12px;
+  clear: both;
+  border-radius: 10px 10px 0 10px;
+  float: right;
+  background: #F3E5F5;
+  color: black;
+  position: relative;
+  margin: 4px 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.result>li::after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: -10px;
+  border: 0 solid transparent;
+  border-bottom-width: 0px;
+  border-top-width: 10px;
+  border-left: 12px solid #F3E5F5;
 }
