@@ -1,27 +1,19 @@
-.message {
-    position: relative;
-    margin: auto;
-    width: 40%;
-    height: 150px;
-	background: #00aabb;
-    border-radius: 10px;
-    text-align: center;
-    vertical-align: center;
-    line-height: 150px;
-    color: white;
-    font-size: 30px;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  box-sizing: border-box;
 }
 
-.message:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 15px solid transparent;
-	border-top-color: #00aabb;
-	border-bottom: 0;
-	margin-left: -15px;
-	margin-bottom: -15px;
+html {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #F5F5F5;
+  font-size: 16px;
 }
