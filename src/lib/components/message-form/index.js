@@ -11,7 +11,7 @@ const template = `
     </form>
 `;
 
-class MessageForm extends HTMLElement {
+export default class MessageForm extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({
@@ -36,7 +36,6 @@ class MessageForm extends HTMLElement {
   initElements() {
     const form = this.shadowRoot.querySelector('form');
     const messages = this.shadowRoot.querySelector('.result');
-
     this.elements = {
       form,
       messages,
@@ -51,15 +50,16 @@ class MessageForm extends HTMLElement {
   }
 
   onSubmit(event) {
+    event.preventDefault();
     this.savedMessages.push(this.elements.form.elements[0].value);
     this.showMessages();
-    event.preventDefault();
+    // this.clearField();
     return false;
   }
 
   showMessages() {
     localStorage.setItem('messages', JSON.stringify(this.savedMessages));
-    this.elements.messages.innerHTML = this.savedMessages.map(el => `<li>${el}</li>`).join('');
+    this.elements.messages.innerHTML = this.savedMessages.map(message => `<li>${message}</li>`).join('');
   }
 
   onKeyPress(event) {
@@ -67,6 +67,8 @@ class MessageForm extends HTMLElement {
       this.elements.form.dispatchEvent(new Event('submit'));
     }
   }
-}
 
-customElements.define('message-form', MessageForm);
+  clearField() {
+    this.elements.form.elements[0].dispatchEvent(new CustomEvent('clear-field'));
+  }
+}
