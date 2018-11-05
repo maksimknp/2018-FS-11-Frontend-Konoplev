@@ -10,7 +10,7 @@ const template = `
 //  <div class="${styles.icon}" />
 // `;
 
-export default class FormInput extends HTMLElement {
+class FormInput extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: 'open' });
@@ -30,6 +30,7 @@ export default class FormInput extends HTMLElement {
 
   attributeChangedCallback(attrName, oldVal, newVal) {
     this.elements.input[attrName] = newVal;
+    this.elements.hiddenInput[attrName] = newVal;
   }
 
   initElements() {
@@ -44,15 +45,11 @@ export default class FormInput extends HTMLElement {
 
   addHandlers() {
     this.elements.input.addEventListener('input', this.onInput.bind(this));
-    this.addEventListener('clear-field', this.clearInput.bind(this));
   }
 
   onInput() {
     this.elements.hiddenInput.value = this.elements.input.value;
   }
-
-  clearInput() {
-    this.elements.input.value = '';
-    this.elements.hiddenInput.value = '';
-  }
 }
+
+export default FormInput;

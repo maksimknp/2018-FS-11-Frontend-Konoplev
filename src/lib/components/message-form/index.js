@@ -50,11 +50,9 @@ export default class MessageForm extends HTMLElement {
   }
 
   onSubmit(event) {
-    event.preventDefault();
     this.savedMessages.push(this.elements.form.elements[0].value);
     this.showMessages();
-    // this.clearField();
-    return false;
+    event.preventDefault();
   }
 
   showMessages() {
@@ -66,9 +64,5 @@ export default class MessageForm extends HTMLElement {
     if (event.keyCode === 13) {
       this.elements.form.dispatchEvent(new Event('submit'));
     }
-  }
-
-  clearField() {
-    this.elements.form.elements[0].dispatchEvent(new CustomEvent('clear-field'));
   }
 }
